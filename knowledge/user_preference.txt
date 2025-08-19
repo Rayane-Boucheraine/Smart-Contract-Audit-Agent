@@ -1,0 +1,7 @@
+User name is John Doe.
+User is a Smart Contract Security Specialist.
+User is interested in DeFi protocols and blockchain security.
+User is based in San Francisco, California.
+User prefers comprehensive security reports with clear severity ratings.
+User values actionable remediation steps and gas optimization recommendations.
+User follows industry standards like SWC registry and OpenZeppelin best practices.

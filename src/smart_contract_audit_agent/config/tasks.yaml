@@ -1,0 +1,64 @@
+security_audit_task:
+  agent: senior_smart_contract_security_auditor
+  description: >
+    Conduct a comprehensive security audit of smart contracts from the GitHub repository: {contract_source}
+
+    Step 1: Use ONLY the GitHub Repository Smart Contract Fetcher tool to fetch all Solidity files (.sol) from the repository.
+
+    Step 2: Analyze ONLY the contract code you can see in the tool output. DO NOT make assumptions about functions or code that are not visible.
+
+    Step 3: For the visible contract code, analyze for:
+    - Reentrancy vulnerabilities (SWC-107)
+    - Integer over/underflow (SWC-101) 
+    - Access control issues (SWC-132)
+    - tx.origin misuse
+    - Unchecked return values (SWC-136)
+    - Denial-of-service vectors
+    - Uninitialized storage pointers
+    - Other SWC registry items
+
+    IMPORTANT: If the contract code appears truncated or incomplete, note this clearly and only analyze what is actually visible.
+    Do NOT reference functions or variables that are not shown in the fetched code.
+    Provide findings based only on the actual visible code with severity ratings and remediation steps.
+  expected_output: >
+    A detailed security audit report based on the visible contract code, noting any truncation, with vulnerability locations and recommendations
+
+code_quality_and_gas_optimization_task:
+  agent: smart_contract_code_review_specialist
+  description: >
+    Review smart contracts from the GitHub repository: {contract_source} for code quality, clarity, and gas efficiency.
+
+    Step 1: Use ONLY the GitHub Repository Smart Contract Fetcher tool to fetch all Solidity files from the repository.
+
+    Step 2: Review ONLY the contract code visible in the tool output. DO NOT make assumptions about code that is not shown.
+
+    Step 3: For the visible contract code, identify:
+    - Dead code and unused variables
+    - Unnecessary storage writes
+    - Suboptimal data structures
+    - Style-guide violations
+    - Missing or incomplete NatSpec documentation
+    - Gas optimization opportunities
+    - Code clarity and maintainability issues
+
+    IMPORTANT: If the contract code appears truncated, note this clearly and only analyze what is actually visible.
+    Do NOT reference functions or variables that are not shown in the fetched code.
+  expected_output: >
+    A code quality review based on the visible contract code, noting any truncation, with specific recommendations
+
+final_report_task:
+  agent: senior_smart_contract_security_auditor
+  description: >
+    Create a final audit report combining security and code quality findings from the previous tasks.
+
+    Based on the analysis of the visible contract code, structure the report with:
+    1. Executive Summary (about the contracts that were actually analyzed)
+    2. Critical Vulnerabilities (based on visible code only)
+    3. Medium/Low Priority Issues
+    4. Code Quality Recommendations  
+    5. Remediation Priority List
+
+    Include any notes about code truncation or incomplete analysis.
+    Focus on actionable insights and keep the report concise (under 1000 words).
+  expected_output: >
+    A comprehensive final audit report based on the actual visible contract code analysis
